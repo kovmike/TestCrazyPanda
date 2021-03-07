@@ -1,0 +1,1 @@
+export {STMEffector} from './STMEffector'
