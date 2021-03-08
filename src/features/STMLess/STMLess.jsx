@@ -50,31 +50,36 @@ export const STMLess = () => {
       );
   };
 
+  //filter
+  const filteredBook = (list) => {
+    return searchingName
+      ? list.filter(
+          (person) =>
+            person.name.first
+              .toLowerCase()
+              .includes(searchingName.toLowerCase()) ||
+            person.name.last.toLowerCase().includes(searchingName.toLowerCase())
+        )
+      : list;
+  };
+
   const prepareData = (list) => {
-    return list
-      .filter(
-        (person) =>
-          person.name.first
-            .toLowerCase()
-            .includes(searchingName.toLowerCase()) ||
-          person.name.last.toLowerCase().includes(searchingName.toLowerCase())
-      )
-      .map((person, i) => (
-        <tr
-          key={person.name.first + Math.random() * 1000 + i}
-          style={
-            person.isActive
-              ? { background: "rgba(2,45,129,0.2)" }
-              : { background: "white" }
-          }
-        >
-          <td>{person.index + 1}</td>
-          <td>{`${person.name.first} ${person.name.last}`}</td>
-          <td>{person.age}</td>
-          <td>{person.balance}</td>
-          <td>{person.isActive + ""}</td>
-        </tr>
-      ));
+    return list.map((person, i) => (
+      <tr
+        key={person.name.first + Math.random() * 1000 + i}
+        style={
+          person.isActive
+            ? { background: "rgba(2,45,129,0.2)" }
+            : { background: "white" }
+        }
+      >
+        <td>{person.index + 1}</td>
+        <td>{`${person.name.first} ${person.name.last}`}</td>
+        <td>{person.age}</td>
+        <td>{person.balance}</td>
+        <td>{person.isActive + ""}</td>
+      </tr>
+    ));
   };
 
   return (
@@ -82,7 +87,7 @@ export const STMLess = () => {
       <SearchLine name={searchingName} setName={setSearchigName} />
       <Pagination
         pagesCount={pagesCount(
-          prepareData(sortedBook(book, sorter)),
+          filteredBook(sortedBook(book, sorter)),
           rowsCount
         )}
         currentPage={currentPage}
@@ -117,7 +122,7 @@ export const STMLess = () => {
         </thead>
         <tbody>
           {pageContent(
-            prepareData(sortedBook(book, sorter)),
+            prepareData(filteredBook(sortedBook(book, sorter))),
             currentPage,
             rowsCount
           )}
