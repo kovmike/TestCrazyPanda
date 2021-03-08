@@ -101,6 +101,7 @@ export const STMLess = () => {
             <th>Name</th>
             <th
               onClick={() => {
+                setCurrentPage(1);
                 sorter.age
                   ? setSorter({ ...sorter, balance: 0, age: -sorter.age })
                   : setSorter({ ...sorter, balance: 0, age: 1 });
@@ -110,6 +111,7 @@ export const STMLess = () => {
             </th>
             <th
               onClick={() => {
+                setCurrentPage(1);
                 sorter.balance
                   ? setSorter({ ...sorter, age: 0, balance: -sorter.balance })
                   : setSorter({ ...sorter, age: 0, balance: 1 });
