@@ -21,7 +21,13 @@ export const Pagination = ({
   return (
     <div>
       <label htmlFor="select">show by</label>
-      <select id="select" onChange={(e) => setRowsCount(e.target.value)}>
+      <select
+        id="select"
+        onChange={(e) => {
+          setPage(1);
+          setRowsCount(e.target.value);
+        }}
+      >
         <option>10</option>
         <option>20</option>
         <option>50</option>
