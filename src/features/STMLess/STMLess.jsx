@@ -28,7 +28,6 @@ export const STMLess = () => {
 
   //
   const pagesCount = (list, rowsCount) => {
-    console.log(list.length);
     return Math.ceil(list.length / rowsCount);
   };
 
